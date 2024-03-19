@@ -1,6 +1,6 @@
 package Java.Universidad.Progra4.Tareas.Parcial1;
 
-public class Usuario {
+public class User {
     public String tipoDocumentoDeIdentificacion;
     public String docuemntoIdentificacion;
     public String nombres;
@@ -12,7 +12,7 @@ public class Usuario {
     public String contraseña;
     public String confirmarContraseña;
 
-    Usuario (String tipoDocumentoDeIdentificacion, String docuemntoIdentificacion, String nombres,
+    User (String tipoDocumentoDeIdentificacion, String docuemntoIdentificacion, String nombres,
     String apellidos, String correoElectronico, String direccionResidencia, String ciudadResidencia,  String telefonoDeContacto,
     String contraseña, String confirmarContraseña){
         
