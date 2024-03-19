@@ -6,7 +6,6 @@ import java.util.Scanner;
 
 public class ProyectoFinal {
     public static Scanner leerDatoTeclado = new Scanner(System.in);
-    //public static List<String[]> usuarios = new ArrayList<>();
     public static List<Usuario> usuarios = new ArrayList<>();
     
     public static void main(String[] args) {
