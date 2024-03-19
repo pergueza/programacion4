@@ -16,76 +16,12 @@ public class ProyectoFinal {
     public static final byte TELEFONO_DE_CONTACTO = 7;
     public static final byte CONTRASEÑA = 8;
     public static final byte CONFIRMAR_CONTRASEÑA = 9;
-
+    
     public static Scanner leerDatoTeclado = new Scanner(System.in);
     public static List<String[]> usuarios = new ArrayList<>();
-
-    public static void registrarUsuario(String tipoDocumentoDeIdentificacion, String docuemntoIdentificacion, String nombres,
-    String apellidos, String correoElectronico, String direccionResidencia, String ciudadResidencia,  String telefonoDeContacto,
-    String contraseña, String confirmarContraseña) {
-        String[] usuario = new String[NUMEROS_DE_DATOS_DEL_USUARIO];
-
-        usuario[TIPO_DOCUMENTO_DE_IDENTIFICACION] = tipoDocumentoDeIdentificacion;
-        usuario[DOCUMENTO_IDENTIFICACION] = docuemntoIdentificacion;
-        usuario[NOMBRES] = nombres;
-        usuario[APELLIDOS] = apellidos;
-        usuario[CORREO_ELECTRONICO] = correoElectronico;
-        usuario[DIRECCION_RESIDENCIA] = direccionResidencia;
-        usuario[CIUDAD_RESIDENCIA] = ciudadResidencia;
-        usuario[TELEFONO_DE_CONTACTO] = telefonoDeContacto;
-        usuario[CONTRASEÑA] = contraseña;
-        usuario[CONFIRMAR_CONTRASEÑA] = confirmarContraseña;
-
-        usuarios.add(usuario);
-    }
-
-    public static void solicitarDatosDeRegistro() {
-        String tipoDocumentoDeIdentificacion, nombres, apellidos, correoElectronico, direccionResidencia,
-        ciudadResidencia, contraseña, confirmarContraseña, docuemntoIdentificacion, telefonoDeContacto;
-
-        System.out.print("\nTipo de documento: ");
-        tipoDocumentoDeIdentificacion = leerDatoTeclado.nextLine();
-        System.out.print("Documento de identificacion: ");
-        docuemntoIdentificacion = leerDatoTeclado.nextLine();
-        System.out.print("Nombres: ");
-        nombres = leerDatoTeclado.nextLine();
-        System.out.print("Apellidos: ");
-        apellidos = leerDatoTeclado.nextLine();
-        System.out.print("Correo Electronico: ");
-        correoElectronico = leerDatoTeclado.nextLine();
-        System.out.print("Direccion de residencia: ");
-        direccionResidencia = leerDatoTeclado.nextLine();
-        System.out.print("Ciudad de residencia: ");
-        ciudadResidencia = leerDatoTeclado.nextLine();
-        System.out.print("Telefono de contacto: ");
-        telefonoDeContacto = leerDatoTeclado.nextLine();
-
-        boolean noCoincidenContraseñas = true;
-        do {
-            System.out.print("Contraseña: ");
-            contraseña = leerDatoTeclado.nextLine();
-            System.out.print("Confirmar contraseña: ");
-            confirmarContraseña = leerDatoTeclado.nextLine();
-
-            if (!(contraseña.equals(confirmarContraseña))) {
-                System.out.println("No coinciden ambas contraseñas, por favor vuelva a intentar.\n");
-            }
-            else {noCoincidenContraseñas = false;}
-        } while (noCoincidenContraseñas);
-
-        registrarUsuario(tipoDocumentoDeIdentificacion, docuemntoIdentificacion, nombres, apellidos,
-        correoElectronico, direccionResidencia, ciudadResidencia, telefonoDeContacto, contraseña, confirmarContraseña);
-    }
-
-    public static boolean iniciarSesion(String correoElectronico, String contraseña) {
-        for (String[] usuario : usuarios) {
-            if (correoElectronico.equals(usuario[CORREO_ELECTRONICO])) {
-                if (contraseña.equals(usuario[CONTRASEÑA])) {
-                    return true;
-                }
-            }
-        }
-        return false;
+    
+    public static void main(String[] args) {
+        mostrarMenuLoginRegistro();
     }
 
     public static void mostrarMenuLoginRegistro() {
@@ -136,7 +72,71 @@ public class ProyectoFinal {
         }
     }
 
-    public static void main(String[] args) {
-        mostrarMenuLoginRegistro();
+    public static void solicitarDatosDeRegistro() {
+        String tipoDocumentoDeIdentificacion, nombres, apellidos, correoElectronico, direccionResidencia,
+        ciudadResidencia, contraseña, confirmarContraseña, docuemntoIdentificacion, telefonoDeContacto;
+
+        System.out.print("\nTipo de documento: ");
+        tipoDocumentoDeIdentificacion = leerDatoTeclado.nextLine();
+        System.out.print("Documento de identificacion: ");
+        docuemntoIdentificacion = leerDatoTeclado.nextLine();
+        System.out.print("Nombres: ");
+        nombres = leerDatoTeclado.nextLine();
+        System.out.print("Apellidos: ");
+        apellidos = leerDatoTeclado.nextLine();
+        System.out.print("Correo Electronico: ");
+        correoElectronico = leerDatoTeclado.nextLine();
+        System.out.print("Direccion de residencia: ");
+        direccionResidencia = leerDatoTeclado.nextLine();
+        System.out.print("Ciudad de residencia: ");
+        ciudadResidencia = leerDatoTeclado.nextLine();
+        System.out.print("Telefono de contacto: ");
+        telefonoDeContacto = leerDatoTeclado.nextLine();
+
+        boolean noCoincidenContraseñas = true;
+        do {
+            System.out.print("Contraseña: ");
+            contraseña = leerDatoTeclado.nextLine();
+            System.out.print("Confirmar contraseña: ");
+            confirmarContraseña = leerDatoTeclado.nextLine();
+
+            if (!(contraseña.equals(confirmarContraseña))) {
+                System.out.println("No coinciden ambas contraseñas, por favor vuelva a intentar.\n");
+            }
+            else {noCoincidenContraseñas = false;}
+        } while (noCoincidenContraseñas);
+
+        registrarUsuario(tipoDocumentoDeIdentificacion, docuemntoIdentificacion, nombres, apellidos,
+        correoElectronico, direccionResidencia, ciudadResidencia, telefonoDeContacto, contraseña, confirmarContraseña);
+    }
+
+    public static void registrarUsuario(String tipoDocumentoDeIdentificacion, String docuemntoIdentificacion, String nombres,
+    String apellidos, String correoElectronico, String direccionResidencia, String ciudadResidencia,  String telefonoDeContacto,
+    String contraseña, String confirmarContraseña) {
+        String[] usuario = new String[NUMEROS_DE_DATOS_DEL_USUARIO];
+
+        usuario[TIPO_DOCUMENTO_DE_IDENTIFICACION] = tipoDocumentoDeIdentificacion;
+        usuario[DOCUMENTO_IDENTIFICACION] = docuemntoIdentificacion;
+        usuario[NOMBRES] = nombres;
+        usuario[APELLIDOS] = apellidos;
+        usuario[CORREO_ELECTRONICO] = correoElectronico;
+        usuario[DIRECCION_RESIDENCIA] = direccionResidencia;
+        usuario[CIUDAD_RESIDENCIA] = ciudadResidencia;
+        usuario[TELEFONO_DE_CONTACTO] = telefonoDeContacto;
+        usuario[CONTRASEÑA] = contraseña;
+        usuario[CONFIRMAR_CONTRASEÑA] = confirmarContraseña;
+
+        usuarios.add(usuario);
+    }
+
+    public static boolean iniciarSesion(String correoElectronico, String contraseña) {
+        for (String[] usuario : usuarios) {
+            if (correoElectronico.equals(usuario[CORREO_ELECTRONICO])) {
+                if (contraseña.equals(usuario[CONTRASEÑA])) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 }
