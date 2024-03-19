@@ -5,20 +5,9 @@ import java.util.List;
 import java.util.Scanner;
 
 public class ProyectoFinal {
-    public static final byte NUMEROS_DE_DATOS_DEL_USUARIO = 10;
-    public static final byte TIPO_DOCUMENTO_DE_IDENTIFICACION = 0;
-    public static final byte DOCUMENTO_IDENTIFICACION = 1;
-    public static final byte NOMBRES = 2;
-    public static final byte APELLIDOS = 3;
-    public static final byte CORREO_ELECTRONICO = 4;
-    public static final byte DIRECCION_RESIDENCIA = 5;
-    public static final byte CIUDAD_RESIDENCIA = 6;
-    public static final byte TELEFONO_DE_CONTACTO = 7;
-    public static final byte CONTRASEÑA = 8;
-    public static final byte CONFIRMAR_CONTRASEÑA = 9;
-    
     public static Scanner leerDatoTeclado = new Scanner(System.in);
-    public static List<String[]> usuarios = new ArrayList<>();
+    //public static List<String[]> usuarios = new ArrayList<>();
+    public static List<Usuario> usuarios = new ArrayList<>();
     
     public static void main(String[] args) {
         mostrarMenuLoginRegistro();
@@ -113,8 +102,17 @@ public class ProyectoFinal {
     public static void registrarUsuario(String tipoDocumentoDeIdentificacion, String docuemntoIdentificacion, String nombres,
     String apellidos, String correoElectronico, String direccionResidencia, String ciudadResidencia,  String telefonoDeContacto,
     String contraseña, String confirmarContraseña) {
-        String[] usuario = new String[NUMEROS_DE_DATOS_DEL_USUARIO];
+        Usuario usuario = new Usuario(tipoDocumentoDeIdentificacion, docuemntoIdentificacion, nombres, apellidos,
+        correoElectronico, direccionResidencia, ciudadResidencia, telefonoDeContacto, contraseña, confirmarContraseña);
+        usuarios.add(usuario);
+    }
 
+    /* 
+     public static void registrarUsuario(String tipoDocumentoDeIdentificacion, String docuemntoIdentificacion, String nombres,
+     String apellidos, String correoElectronico, String direccionResidencia, String ciudadResidencia,  String telefonoDeContacto,
+     String contraseña, String confirmarContraseña) {
+         String[] usuario = new String[NUMEROS_DE_DATOS_DEL_USUARIO];
+         
         usuario[TIPO_DOCUMENTO_DE_IDENTIFICACION] = tipoDocumentoDeIdentificacion;
         usuario[DOCUMENTO_IDENTIFICACION] = docuemntoIdentificacion;
         usuario[NOMBRES] = nombres;
@@ -128,11 +126,12 @@ public class ProyectoFinal {
 
         usuarios.add(usuario);
     }
-
+    */
+    
     public static boolean iniciarSesion(String correoElectronico, String contraseña) {
-        for (String[] usuario : usuarios) {
-            if (correoElectronico.equals(usuario[CORREO_ELECTRONICO])) {
-                if (contraseña.equals(usuario[CONTRASEÑA])) {
+        for (Usuario usuario : usuarios) {
+            if (correoElectronico.equals(usuario.getCorreoElectronico())) {
+                if (contraseña.equals(usuario.getContraseña())) {
                     return true;
                 }
             }
