@@ -106,27 +106,6 @@ public class ProyectoFinal {
         correoElectronico, direccionResidencia, ciudadResidencia, telefonoDeContacto, contraseña, confirmarContraseña);
         usuarios.add(usuario);
     }
-
-    /* 
-     public static void registrarUsuario(String tipoDocumentoDeIdentificacion, String docuemntoIdentificacion, String nombres,
-     String apellidos, String correoElectronico, String direccionResidencia, String ciudadResidencia,  String telefonoDeContacto,
-     String contraseña, String confirmarContraseña) {
-         String[] usuario = new String[NUMEROS_DE_DATOS_DEL_USUARIO];
-         
-        usuario[TIPO_DOCUMENTO_DE_IDENTIFICACION] = tipoDocumentoDeIdentificacion;
-        usuario[DOCUMENTO_IDENTIFICACION] = docuemntoIdentificacion;
-        usuario[NOMBRES] = nombres;
-        usuario[APELLIDOS] = apellidos;
-        usuario[CORREO_ELECTRONICO] = correoElectronico;
-        usuario[DIRECCION_RESIDENCIA] = direccionResidencia;
-        usuario[CIUDAD_RESIDENCIA] = ciudadResidencia;
-        usuario[TELEFONO_DE_CONTACTO] = telefonoDeContacto;
-        usuario[CONTRASEÑA] = contraseña;
-        usuario[CONFIRMAR_CONTRASEÑA] = confirmarContraseña;
-
-        usuarios.add(usuario);
-    }
-    */
     
     public static boolean iniciarSesion(String correoElectronico, String contraseña) {
         for (Usuario usuario : usuarios) {
