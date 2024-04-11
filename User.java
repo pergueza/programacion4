@@ -1,5 +1,3 @@
-package Java.Universidad.Progra4.Tareas.Parcial1;
-
 public class User {
     public String tipoDocumentoDeIdentificacion;
     public String docuemntoIdentificacion;

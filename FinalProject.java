@@ -1,5 +1,3 @@
-package Java.Universidad.Progra4.Tareas.Parcial1;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
