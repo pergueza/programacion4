@@ -59,8 +59,8 @@ public class FinalProject {
     }
 
     public static void requestRegistrationData() {
-        String identificationType, identificationNumber, names, surnames, email, residenceAdress,
-        cityResidence, telephoneNumber, password, confirmPassword;
+        String identificationType, identificationNumber, names, surnames, email, Adress,
+        cityResidence, cellphoneNumber, password, confirmPassword;
 
         System.out.println("----------------------------------------------");
         System.out.println("Formulario de registro");
@@ -77,11 +77,11 @@ public class FinalProject {
         System.out.print("Email: ");
         email = inputKeyboard.nextLine();
         System.out.print("Residence Adress: ");
-        residenceAdress = inputKeyboard.nextLine();
+        Adress = inputKeyboard.nextLine();
         System.out.print("City Residence: ");
         cityResidence = inputKeyboard.nextLine();
         System.out.print("Telephone Number: ");
-        telephoneNumber = inputKeyboard.nextLine();
+        cellphoneNumber = inputKeyboard.nextLine();
 
         boolean notMatchPasswords = true;
         do {
@@ -97,7 +97,7 @@ public class FinalProject {
         } while (notMatchPasswords);
 
         registerUser(identificationType, identificationNumber, names, surnames,
-        email, residenceAdress, cityResidence, telephoneNumber, password, confirmPassword);
+        email, Adress, cityResidence, cellphoneNumber, password, confirmPassword);
     }
 
     public static void registerUser(String identificationType, String identificationNumber, String names,
@@ -111,7 +111,7 @@ public class FinalProject {
     
     public static boolean logIn(String email, String password) {
         for (User user : users) {
-            if (email.equals(user.getCorreoElectronico()) && password.equals(user.getContraseña())) {
+            if (email.equals(user.getEmail()) && password.equals(user.getPassword())) {
                 return true;
             }
         }

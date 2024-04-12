@@ -1,36 +1,36 @@
 public class User {
-    public String tipoDocumentoDeIdentificacion;
-    public String docuemntoIdentificacion;
-    public String nombres;
-    public String apellidos;
-    public String correoElectronico;
-    public String direccionResidencia;
-    public String ciudadResidencia;
-    public String telefonoDeContacto;
-    public String contraseña;
-    public String confirmarContraseña;
+    public String identificationType;
+    public String identificationNumber;
+    public String names;
+    public String surnames;
+    public String email;
+    public String Adress;
+    public String cityResidence;
+    public String cellphoneNumber;
+    public String password;
+    public String confirmPassword;
 
     User (String tipoDocumentoDeIdentificacion, String docuemntoIdentificacion, String nombres,
     String apellidos, String correoElectronico, String direccionResidencia, String ciudadResidencia,  String telefonoDeContacto,
     String contraseña, String confirmarContraseña){
         
-        this.tipoDocumentoDeIdentificacion = tipoDocumentoDeIdentificacion;
-        this.docuemntoIdentificacion = docuemntoIdentificacion;
-        this.nombres = nombres;
-        this.apellidos = apellidos;
-        this.correoElectronico = correoElectronico;
-        this.direccionResidencia = direccionResidencia;
-        this.ciudadResidencia = ciudadResidencia;
-        this.telefonoDeContacto = telefonoDeContacto;
-        this.contraseña = contraseña;
-        this.confirmarContraseña = confirmarContraseña;
+        this.identificationType = tipoDocumentoDeIdentificacion;
+        this.identificationNumber = docuemntoIdentificacion;
+        this.names = nombres;
+        this.surnames = apellidos;
+        this.email = correoElectronico;
+        this.Adress = direccionResidencia;
+        this.cityResidence = ciudadResidencia;
+        this.cellphoneNumber = telefonoDeContacto;
+        this.password = contraseña;
+        this.confirmPassword = confirmarContraseña;
     }
 
-    public String getContraseña(){
-        return this.contraseña;
+    public String getPassword(){
+        return this.password;
     }
 
-    public String getCorreoElectronico(){
-        return this.correoElectronico;
+    public String getEmail(){
+        return this.email;
     }
 }
