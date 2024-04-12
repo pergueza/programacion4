@@ -4,7 +4,7 @@ public class User {
     public String names;
     public String surnames;
     public String email;
-    public String Adress;
+    public String adress;
     public String cityResidence;
     public String cellphoneNumber;
     public String password;
@@ -19,7 +19,7 @@ public class User {
         this.names = nombres;
         this.surnames = apellidos;
         this.email = correoElectronico;
-        this.Adress = direccionResidencia;
+        this.adress = direccionResidencia;
         this.cityResidence = ciudadResidencia;
         this.cellphoneNumber = telefonoDeContacto;
         this.password = contraseña;
