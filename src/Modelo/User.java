@@ -3,12 +3,12 @@ public class User {
     public String identificationNumber;
     public String names;
     public String surnames;
-    public String email;
     public String adress;
     public String cityResidence;
     public String cellphoneNumber;
-    public String password;
     public String confirmPassword;
+    private String email;
+    private String password;
 
     User (String tipoDocumentoDeIdentificacion, String docuemntoIdentificacion, String nombres,
     String apellidos, String correoElectronico, String direccionResidencia, String ciudadResidencia,  String telefonoDeContacto,
@@ -26,11 +26,12 @@ public class User {
         this.confirmPassword = confirmarContraseña;
     }
 
+    public String getEmail(){
+        return this.email;
+    }
+    
     public String getPassword(){
         return this.password;
     }
 
-    public String getEmail(){
-        return this.email;
-    }
 }

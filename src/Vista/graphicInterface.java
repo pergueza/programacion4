@@ -2,18 +2,18 @@ import java.awt.FlowLayout;
 import java.awt.event.*;
 import javax.swing.*;
 
-public class InterfazGrafica implements ActionListener{
-    JFrame fLogin, fRegister = new JFrame();
-    JDialog dialog;
-    JTextField tfEmail, tfIdentificationType, tfIdentificationNumber;
-    JTextField tfNames, tfSurnames, tfAdress, tfEmailRegister;
-    JTextField tfCityResidence, tfCellphoneNumber;
-    JPasswordField pfPassword, pfPasswordRegister, pfConfirmPassword;
-    JButton bLogIn, bCloseDialog, bShowRegister, bRegister, bExit, bBack;
-    Boolean registered;
+public class graphicInterface implements ActionListener{
+    private JFrame fLogin, fRegister = new JFrame();
+    private JDialog dialog;
+    private JTextField tfEmail, tfIdentificationType, tfIdentificationNumber;
+    private JTextField tfNames, tfSurnames, tfAdress, tfEmailRegister;
+    private JTextField tfCityResidence, tfCellphoneNumber;
+    private JPasswordField pfPassword, pfPasswordRegister, pfConfirmPassword;
+    private JButton bLogIn, bCloseDialog, bShowRegister, bRegister, bExit, bBack;
+    private Boolean registered = false;
     
-    InterfazGrafica(){
-        fLogin = new JFrame("Log In");
+    public void showLogin(){
+        fLogin = new JFrame("Login - MyHotel");
         JLabel lPassword = new JLabel("Password");
         JLabel lEmail = new JLabel("Email");
         tfEmail = new JTextField();
@@ -30,6 +30,7 @@ public class InterfazGrafica implements ActionListener{
         bShowRegister.setBounds(50, 220, 200, 30);
         bExit.setBounds(50, 260, 200, 30);
 
+        bLogIn.doClick(50);
         bLogIn.addActionListener(this);
         bShowRegister.addActionListener(this);
         bExit.addActionListener(this);
@@ -43,6 +44,7 @@ public class InterfazGrafica implements ActionListener{
         fLogin.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
+    @Override
     public void actionPerformed(ActionEvent e){
         if(e.getSource() == bLogIn){
             if(FinalProject.logIn(tfEmail.getText(),
@@ -55,14 +57,14 @@ public class InterfazGrafica implements ActionListener{
         }
 
         else if (e.getSource() == bShowRegister){
-            requestRegistrationData();
+            showRegistrationData();
         }
 
         else if (e.getSource() == bRegister){
             if (new String(pfPasswordRegister.getPassword()
                             ).equals(new String(pfConfirmPassword.getPassword()))){
                                 
-                if (FinalProject.registerUser(
+                FinalProject.registerUser(
                     tfIdentificationType.getText(),
                     tfIdentificationNumber.getText(), tfNames.getText(),
                     tfSurnames.getText(), tfEmailRegister.getText(),
@@ -70,13 +72,9 @@ public class InterfazGrafica implements ActionListener{
                     tfCellphoneNumber.getText(),
                     new String(pfPasswordRegister.getPassword()),
                     new String(pfConfirmPassword.getPassword())
-                    )){
-                    showMessage(fRegister, "Registered Successfully");
-                    registered = true;
-                }
-                else {
-                    showMessage(fRegister, "This account already exists");
-                }
+                );
+                showMessage(fRegister, "Registered Successfully");
+                registered = true;
             }
             else{
                 showMessage(fRegister, "The passwords do not match");
@@ -124,7 +122,7 @@ public class InterfazGrafica implements ActionListener{
         dialog.setVisible(true);
     }
 
-    public void requestRegistrationData(){
+    public void showRegistrationData(){
         registered = false;
         fRegister = new JFrame("Register");
         JLabel lIdentificationType = new JLabel("Identification type");

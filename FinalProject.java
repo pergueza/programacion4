@@ -3,13 +3,14 @@ import java.util.List;
 
 public class FinalProject {
     public static List<User> users = new ArrayList<>();
+    public static graphicInterface interfazGrafica = new graphicInterface();
     
     public static void main(String[] args) {
-        showMenuLoginRegister();
+        interfazGrafica.showLogin();
     }
 
     public static void showMenuLoginRegister() {
-        new InterfazGrafica();
+        new graphicInterface();
     }
 
     public static void registerUser(String identificationType,
