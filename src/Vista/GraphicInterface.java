@@ -2,7 +2,7 @@ import java.awt.FlowLayout;
 import java.awt.event.*;
 import javax.swing.*;
 
-public class graphicInterface implements ActionListener{
+public class GraphicInterface implements ActionListener{
     private JFrame fLogin, fRegister = new JFrame();
     private JDialog dialog;
     private JTextField tfEmail, tfIdentificationType, tfIdentificationNumber;
@@ -30,7 +30,6 @@ public class graphicInterface implements ActionListener{
         bShowRegister.setBounds(50, 220, 200, 30);
         bExit.setBounds(50, 260, 200, 30);
 
-        bLogIn.doClick(50);
         bLogIn.addActionListener(this);
         bShowRegister.addActionListener(this);
         bExit.addActionListener(this);
@@ -47,7 +46,7 @@ public class graphicInterface implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e){
         if(e.getSource() == bLogIn){
-            if(FinalProject.logIn(tfEmail.getText(),
+            if(FinalProject.login(tfEmail.getText(),
                                   new String(pfPassword.getPassword()))){
                 showWelcome();
             }
@@ -64,7 +63,7 @@ public class graphicInterface implements ActionListener{
             if (new String(pfPasswordRegister.getPassword()
                             ).equals(new String(pfConfirmPassword.getPassword()))){
                                 
-                FinalProject.registerUser(
+                FinalProject.registerCustomer(
                     tfIdentificationType.getText(),
                     tfIdentificationNumber.getText(), tfNames.getText(),
                     tfSurnames.getText(), tfEmailRegister.getText(),

@@ -3,29 +3,29 @@ import java.util.List;
 
 public class FinalProject {
     public static List<User> users = new ArrayList<>();
-    public static graphicInterface interfazGrafica = new graphicInterface();
+    public static GraphicInterface interfazGrafica = new GraphicInterface();
     
     public static void main(String[] args) {
         interfazGrafica.showLogin();
     }
 
     public static void showMenuLoginRegister() {
-        new graphicInterface();
+        new GraphicInterface();
     }
 
-    public static void registerUser(String identificationType,
+    public static void registerCustomer(String identificationType,
     String identificationNumber, String names, String surnames, String email,
     String Adress, String cityResidence,  String cellphoneNumber,
     String password, String confirmPassword) {
 
-        User user = new User(identificationType, identificationNumber, names,
+        Customer customer = new Customer(identificationType, identificationNumber, names,
         surnames, email, Adress, cityResidence, cellphoneNumber, password,
         confirmPassword);
         
-        users.add(user);
+        users.add(customer);
     }
     
-    public static boolean logIn(String email, String password) {
+    public static boolean login(String email, String password) {
         for (User user : users) {
             if (email.equals(user.getEmail()) &&
                 password.equals(user.getPassword())) {

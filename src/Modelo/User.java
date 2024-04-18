@@ -10,9 +10,10 @@ public class User {
     private String email;
     private String password;
 
-    User (String tipoDocumentoDeIdentificacion, String docuemntoIdentificacion, String nombres,
-    String apellidos, String correoElectronico, String direccionResidencia, String ciudadResidencia,  String telefonoDeContacto,
-    String contraseña, String confirmarContraseña){
+    public User(String tipoDocumentoDeIdentificacion,
+    String docuemntoIdentificacion, String nombres, String apellidos,
+    String correoElectronico, String direccionResidencia, String ciudadResidencia,
+    String telefonoDeContacto, String contraseña, String confirmarContraseña){
         
         this.identificationType = tipoDocumentoDeIdentificacion;
         this.identificationNumber = docuemntoIdentificacion;
