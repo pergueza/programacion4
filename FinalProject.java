@@ -1,37 +1,14 @@
-import java.util.ArrayList;
-import java.util.List;
-
 public class FinalProject {
-    public static List<User> users = new ArrayList<>();
-    public static GraphicInterface interfazGrafica = new GraphicInterface();
-    
     public static void main(String[] args) {
-        interfazGrafica.showLogin();
-    }
+        Admin admin = new Admin("C.C.",
+                                "1006294360", "David",
+                                "Pergueza Amaya",
+                                "d.pergueza@utp.edu.co",
+                                "Calle 5 #16-175", "Cartago",
+                                "3168131975", "1204",
+                                "1204");
+        User.users.add(admin);
 
-    public static void showMenuLoginRegister() {
-        new GraphicInterface();
-    }
-
-    public static void registerCustomer(String identificationType,
-    String identificationNumber, String names, String surnames, String email,
-    String Adress, String cityResidence,  String cellphoneNumber,
-    String password, String confirmPassword) {
-
-        Customer customer = new Customer(identificationType, identificationNumber, names,
-        surnames, email, Adress, cityResidence, cellphoneNumber, password,
-        confirmPassword);
-        
-        users.add(customer);
-    }
-    
-    public static boolean login(String email, String password) {
-        for (User user : users) {
-            if (email.equals(user.getEmail()) &&
-                password.equals(user.getPassword())) {
-                return true;
-            }
-        }
-        return false;
+        MainMenu.showMainMenu();
     }
 }

@@ -1,38 +1,69 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public class User {
-    public String identificationType;
-    public String identificationNumber;
-    public String names;
-    public String surnames;
-    public String adress;
-    public String cityResidence;
-    public String cellphoneNumber;
-    public String confirmPassword;
+    String identificationType;
+    String identificationNumber;
+    String names;
+    String surnames;
+    String adress;
+    String cityResidence;
+    String cellphoneNumber;
+    String confirmPassword;
     private String email;
     private String password;
+    static boolean isCustomer;
 
-    public User(String tipoDocumentoDeIdentificacion,
-    String docuemntoIdentificacion, String nombres, String apellidos,
-    String correoElectronico, String direccionResidencia, String ciudadResidencia,
-    String telefonoDeContacto, String contraseña, String confirmarContraseña){
+    public static List<User> users = new ArrayList<>();
+
+
+    public User(String identificationType, String identificationNumber,
+                String names, String surnames, String email, String adress,
+                String cityResidence, String cellphoneNumber, String password,
+                String confirmPassword){
         
-        this.identificationType = tipoDocumentoDeIdentificacion;
-        this.identificationNumber = docuemntoIdentificacion;
-        this.names = nombres;
-        this.surnames = apellidos;
-        this.email = correoElectronico;
-        this.adress = direccionResidencia;
-        this.cityResidence = ciudadResidencia;
-        this.cellphoneNumber = telefonoDeContacto;
-        this.password = contraseña;
-        this.confirmPassword = confirmarContraseña;
+        this.identificationType = identificationType;
+        this.identificationNumber = identificationNumber;
+        this.names = names;
+        this.surnames = surnames;
+        this.email = email;
+        this.adress = adress;
+        this.cityResidence = cityResidence;
+        this.cellphoneNumber = cellphoneNumber;
+        this.password = password;
+        this.confirmPassword = confirmPassword;
     }
+
+
+    public static boolean login(String email, String password) {
+        for (User user : User.users) {
+            if (email.equals(user.getEmail()) &&
+                password.equals(user.getPassword())) {
+                    if (user instanceof Customer){
+                        isCustomer = true;
+                    }
+                    else{
+                        isCustomer = false;
+                    }
+                    return true;
+            }
+        }
+        return false;
+    }
+
 
     public String getEmail(){
         return this.email;
     }
-    
+
+
     public String getPassword(){
         return this.password;
+    }
+
+
+    public void addUser(){
+        users.add(this);
     }
 
 }
