@@ -27,6 +27,7 @@ public class Welcome {
                  menuUser = new JMenu("User");
 
     public static void showWelcomeCustomer(){
+        System.out.println("hola soy customer");
         createDefaultMenu(menuBarCustomer, menuReservationsCustomer, menuRoomsCustomer);
 
         frameWelcome.setJMenuBar(menuBarCustomer);
@@ -35,6 +36,7 @@ public class Welcome {
 
 
     public static void showWelcomeAdmin(){
+        System.out.println("hola soy admin");
         JMenuBar menuBar = new JMenuBar();
         JMenu menuReservations = new JMenu("Reservations"),
               menuRooms = new JMenu("Rooms");

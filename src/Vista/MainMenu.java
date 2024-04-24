@@ -4,7 +4,7 @@ public class MainMenu {
     private static MainMenu instance;
     public static ButtonActions buttonActions = new ButtonActions();
 
-    static JFrame fLogin = new JFrame("Login - MyHotel"), fRegister = new JFrame();
+    static JFrame fLogin = new JFrame("Login - MyHotel");
     static JTextField tfEmail = new JTextField();
     static JPasswordField pfPassword = new JPasswordField();
 
@@ -13,7 +13,6 @@ public class MainMenu {
                    bExit = new JButton("Exit");
 
     private MainMenu(){
-        System.out.println("Soy MainMenu");
         JLabel lPassword = new JLabel("Password");
         JLabel lEmail = new JLabel("Email");
         
@@ -34,6 +33,7 @@ public class MainMenu {
         fLogin.add(bLogIn); fLogin.add(bRegisterCustomer); fLogin.add(bExit);
         fLogin.setSize(300, 370);
         fLogin.setLayout(null);
+        fLogin.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
     private static MainMenu getInstance(){
@@ -49,6 +49,8 @@ public class MainMenu {
     }
     
     public static void closeMainMenu(){
+        tfEmail.setText(null);
+        pfPassword.setText(null);
         fLogin.setVisible(false);
     }
 }

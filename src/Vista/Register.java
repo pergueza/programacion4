@@ -5,24 +5,23 @@ public class Register {
     static ButtonActions buttonActions = new ButtonActions();
 
     static JFrame fRegister = new JFrame("Register - MyHotel");
-
-    static JPasswordField pfPasswordRegister = new JPasswordField(),
-                          pfConfirmPassword = new JPasswordField();
     
     static JButton bBack = new JButton("Back"),
-                   bRegister = new JButton("Register");
-
+    bRegister = new JButton("Register");
+    
     static JTextField tfIdentificationType = new JTextField(),
-                      tfIdentificationNumber = new JTextField(),
-                      tfNames = new JTextField(),
-                      tfSurnames = new JTextField(),
-                      tfAdress = new JTextField(),
-                      tfEmailRegister = new JTextField(),
-                      tfCityResidence = new JTextField(),
-                      tfCellphoneNumber = new JTextField();
+    tfIdentificationNumber = new JTextField(),
+    tfNames = new JTextField(),
+    tfSurnames = new JTextField(),
+    tfAdress = new JTextField(),
+    tfEmail = new JTextField(),
+    tfCityResidence = new JTextField(),
+    tfCellphoneNumber = new JTextField();
 
+    static JPasswordField pfPassword = new JPasswordField(),
+                            pfConfirmPassword = new JPasswordField();
+    
     private Register(){
-        System.out.println("Soy Register");
         JLabel lIdentificationType = new JLabel("Identification type");
         JLabel lIdentificationNumber = new JLabel("ID number");
         JLabel lNames = new JLabel("Names");
@@ -43,7 +42,7 @@ public class Register {
         lSurnames.setBounds(210, 100, 140, 30);
         tfSurnames.setBounds(210, 130, 140, 30);
         lEmail.setBounds(50, 170, 140, 30);
-        tfEmailRegister.setBounds(50, 200, 140, 30);
+        tfEmail.setBounds(50, 200, 140, 30);
         lAdress.setBounds(210, 170, 140, 30);
         tfAdress.setBounds(210, 200, 140, 30);
         lCityResidence.setBounds(50, 240, 140, 30);
@@ -51,7 +50,7 @@ public class Register {
         lCellphoneNumber.setBounds(210, 240, 140, 30);
         tfCellphoneNumber.setBounds(210, 270, 140, 30);
         lPasswordRegister.setBounds(50, 310, 140, 30);
-        pfPasswordRegister.setBounds(50, 340, 140, 30);
+        pfPassword.setBounds(50, 340, 140, 30);
         lConfirmPassword.setBounds(210, 310, 140, 30);
         pfConfirmPassword.setBounds(210, 340, 140, 30);
         bRegister.setBounds(50, 390, 140, 30);
@@ -64,11 +63,11 @@ public class Register {
         fRegister.add(lIdentificationNumber); fRegister.add(tfIdentificationNumber);
         fRegister.add(lNames); fRegister.add(tfNames);
         fRegister.add(lSurnames); fRegister.add(tfSurnames);
-        fRegister.add(lEmail); fRegister.add(tfEmailRegister);
+        fRegister.add(lEmail); fRegister.add(tfEmail);
         fRegister.add(lAdress); fRegister.add(tfAdress);
         fRegister.add(lCityResidence); fRegister.add(tfCityResidence);
         fRegister.add(lCellphoneNumber); fRegister.add(tfCellphoneNumber);
-        fRegister.add(lPasswordRegister); fRegister.add(pfPasswordRegister);
+        fRegister.add(lPasswordRegister); fRegister.add(pfPassword);
         fRegister.add(lConfirmPassword); fRegister.add(pfConfirmPassword);
         fRegister.add(bRegister); fRegister.add(bBack);
         fRegister.setSize(400, 500);
@@ -85,10 +84,22 @@ public class Register {
 
     public static void showRegister(){
         getInstance();
+
         fRegister.setVisible(true);
     }
 
     public static void closerRegister(){
+        tfAdress.setText(null);
+        tfCellphoneNumber.setText(null);
+        tfCityResidence.setText(null);
+        tfEmail.setText(null);
+        tfIdentificationNumber.setText(null);
+        tfIdentificationType.setText(null);
+        tfNames.setText(null);
+        tfSurnames.setText(null);
+        pfConfirmPassword.setText(null);
+        pfPassword.setText(null);
+
         fRegister.setVisible(false);
     }
 }

@@ -51,6 +51,14 @@ public class User {
         return false;
     }
 
+    public static boolean isAlreadyExist(String email){
+        for (User user : User.users) {
+            if (email.equals(user.getEmail())){
+                return true;
+            }
+        }
+        return false;
+    }
 
     public String getEmail(){
         return this.email;
@@ -65,5 +73,4 @@ public class User {
     public void addUser(){
         users.add(this);
     }
-
 }

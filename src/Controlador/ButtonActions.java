@@ -7,11 +7,21 @@ public class ButtonActions implements ActionListener{
     public void actionPerformed(ActionEvent e){
 
         if(e.getSource() == MainMenu.bLogIn){
-            buttonLogin();
+            if (MainMenu.tfEmail.getText().equals("")){
+                Alerts.emptyEmailField(MainMenu.fLogin);
+            }
+
+            else if (String.valueOf(MainMenu.pfPassword.getPassword()).equals("")) {
+                Alerts.emptyPasswordField(MainMenu.fLogin);
+            }
+
+            else{
+                buttonLogin();
+            }
         }
 
         else if (e.getSource() == MainMenu.bRegisterCustomer){
-           Register.showRegister();
+            Register.showRegister();
         }
 
         else if (e.getSource() == MainMenu.bExit){
@@ -19,7 +29,17 @@ public class ButtonActions implements ActionListener{
         }
 
         else if (e.getSource() == Register.bRegister){
-            buttonRegister();
+            if (Register.tfEmail.getText().equals("")){
+                Alerts.emptyEmailField(Register.fRegister);
+            }
+
+            else if (String.valueOf(Register.pfPassword.getPassword()).equals("")) {
+                Alerts.emptyPasswordField(Register.fRegister);
+            }
+
+            else{
+                buttonRegister();
+            }
         }
 
         else if (e.getSource() == Register.bBack){
@@ -49,7 +69,10 @@ public class ButtonActions implements ActionListener{
 
 
     private static void buttonRegister(){
-        if (String.valueOf(Register.pfPasswordRegister.getPassword())
+        if (User.isAlreadyExist(Register.tfEmail.getText())) {
+            Alerts.alreadyExist(Register.fRegister);
+        }
+        else if (String.valueOf(Register.pfPassword.getPassword())
                 .equals(String.valueOf(Register.pfConfirmPassword.getPassword())))
             {
                 Customer.registerCustomer(
@@ -57,11 +80,11 @@ public class ButtonActions implements ActionListener{
                     Register.tfIdentificationNumber.getText(),
                     Register.tfNames.getText(),
                     Register.tfSurnames.getText(),
-                    Register.tfEmailRegister.getText(),
+                    Register.tfEmail.getText(),
                     Register.tfAdress.getText(),
                     Register.tfCityResidence.getText(),
                     Register.tfCellphoneNumber.getText(),
-                    String.valueOf(Register.pfPasswordRegister.getPassword()),
+                    String.valueOf(Register.pfPassword.getPassword()),
                     String.valueOf(Register.pfConfirmPassword.getPassword())
                 );
                 Register.closerRegister();
