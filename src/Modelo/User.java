@@ -70,7 +70,7 @@ public class User {
     }
 
 
-    public void addUser(){
+    public void register(){
         users.add(this);
     }
 }

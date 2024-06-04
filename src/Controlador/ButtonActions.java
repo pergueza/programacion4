@@ -54,11 +54,11 @@ public class ButtonActions implements ActionListener{
         {
             MainMenu.closeMainMenu();
             if (User.isCustomer){
-                Welcome.showWelcomeCustomer();
+                WelcomeCustomer.showWelcome();
             }
 
             else{
-                Welcome.showWelcomeAdmin();
+                WelcomeAdmin.showWelcome();
             }
         }
 

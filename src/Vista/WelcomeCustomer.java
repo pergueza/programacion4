@@ -1,7 +1,7 @@
 import javax.swing.*;
 
-public class Welcome {
-    private static MenuActions menuActions = new MenuActions();
+public class WelcomeCustomer {
+    private static MenuActionsCustomer menuActions = new MenuActionsCustomer();
 
     static JMenuItem iMakeReservation = new JMenuItem("Make a reservation..."),
                 iModifyReservation = new JMenuItem("Modify reservation..."),
@@ -10,55 +10,18 @@ public class Welcome {
 
                 iSearchAvailableRooms = new JMenuItem("Search Available Rooms..."),
                 iDetailsRooms = new JMenuItem("See Room Details..."),
-                     
-                iCheckAvailabilityRoom = new JMenuItem("Check availability rooms..."),
-                iAddRoomToInventory = new JMenuItem("Add room to inventory..."),
-                iEditRoomInInventory = new JMenuItem("Edit room in inventory..."),
-                iRemoveRoomFromInventory = new JMenuItem("Remove room from inventory"),
 
                 iSignOff = new JMenuItem("Sign Off...");
     
     static JFrame frameWelcome = new JFrame("Welcome - MyHotel"),
                   frameDefault = new JFrame();
 
-    static JMenuBar menuBarCustomer = new JMenuBar();
-    static JMenu menuReservationsCustomer = new JMenu("Reservations"),
-                 menuRoomsCustomer = new JMenu("Rooms"),
+    static JMenuBar menuBar = new JMenuBar();
+    static JMenu menuReservations = new JMenu("Reservations"),
+                 menuRooms = new JMenu("Rooms"),
                  menuUser = new JMenu("User");
 
-    public static void showWelcomeCustomer(){
-        System.out.println("hola soy customer");
-        createDefaultMenu(menuBarCustomer, menuReservationsCustomer, menuRoomsCustomer);
-
-        frameWelcome.setJMenuBar(menuBarCustomer);
-        createDefaultFrame(frameWelcome);
-    }
-
-
-    public static void showWelcomeAdmin(){
-        System.out.println("hola soy admin");
-        JMenuBar menuBar = new JMenuBar();
-        JMenu menuReservations = new JMenu("Reservations"),
-              menuRooms = new JMenu("Rooms");
-
-        createDefaultMenu(menuBar, menuReservations, menuRooms);
-        menuRooms.add(iCheckAvailabilityRoom);
-        menuRooms.add(iAddRoomToInventory);
-        menuRooms.add(iEditRoomInInventory);
-        menuRooms.add(iRemoveRoomFromInventory);
-
-        iCheckAvailabilityRoom.addActionListener(menuActions);
-        iAddRoomToInventory.addActionListener(menuActions);
-        iEditRoomInInventory.addActionListener(menuActions);
-        iRemoveRoomFromInventory.addActionListener(menuActions);
-
-        frameWelcome.setJMenuBar(menuBar);
-        createDefaultFrame(frameWelcome);
-    }
-
-    
-    public static void createDefaultMenu(JMenuBar menuBar, JMenu menuReservations,
-                                         JMenu menuRooms){
+    public static void showWelcome(){
         menuUser.add(iSignOff);
 
         menuReservations.add(iMakeReservation);
@@ -81,8 +44,10 @@ public class Welcome {
 
         iSearchAvailableRooms.addActionListener(menuActions);
         iDetailsRooms.addActionListener(menuActions);
-    }
 
+        frameWelcome.setJMenuBar(menuBar);
+        createDefaultFrame(frameWelcome);
+    }
 
     public static void createDefaultFrame(JFrame frame){
         frame.setSize(300, 300);
@@ -125,30 +90,6 @@ public class Welcome {
 
     public static void showDetailRooms(){
         frameDefault.setTitle("Room Details - MyHotel");
-        createDefaultFrame(frameDefault);
-    }
-
-
-    public static void showCheckAvailabilityRoom(){
-        frameDefault.setTitle("Check Availability Room - MyHotel");
-        createDefaultFrame(frameDefault);
-    }
-
-
-    public static void showAddRoomToInventory(){
-        frameDefault.setTitle("Add Room - MyHotel");
-        createDefaultFrame(frameDefault);
-    }
-
-
-    public static void showEditRoomInInventory(){
-        frameDefault.setTitle("Edit Room - MyHotel");
-        createDefaultFrame(frameDefault);
-    }
-
-
-    public static void showRemoveRoomFromInventory(){
-        frameDefault.setTitle("Remove Room - MyHotel");
         createDefaultFrame(frameDefault);
     }
 }

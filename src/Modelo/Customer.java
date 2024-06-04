@@ -19,6 +19,6 @@ public class Customer extends User{
                                          names, surnames, email, Adress,
                                          cityResidence, cellphoneNumber, password,
                                          confirmPassword);
-        customer.addUser();
+        customer.register();
     }
 }
