@@ -1,4 +1,7 @@
 public class Customer extends User{
+    public Customer(){
+        
+    }
 
     public Customer(String identificationType, String identificationNumber,
                     String names, String surnames, String email,

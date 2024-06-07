@@ -11,9 +11,10 @@ public class UserDAO {
 
     public User logInUser(String email, String passwrod){
         User user = new User();
-        String sql = "SELECT customer.id, user.email, user.password\n" + //
-                        "FROM user\n" + //
-                        "LEFT JOIN customer ON user.idNumber=customer.id_user\n" + //
+        String sql = "SELECT customer.id AS id_customer, admin.id AS id_admin, user.email, user.password\n" + //
+                        "FROM ((user\n" + //
+                        "LEFT JOIN customer ON user.idNumber=customer.id_user)\n" + //
+                        "LEFT JOIN admin ON user.idNumber=admin.id_user)\n" + //
                         "WHERE email = ?\n" + //
                         "AND password = ?";
         try {
@@ -23,7 +24,8 @@ public class UserDAO {
             ps.setString(2, passwrod);
             rs = ps.executeQuery();
             if (rs.next()) {
-                user.setIsCustomer(rs.getString("id"));
+                user.setId_customer(rs.getString("id_customer"));
+                user.setId_admin(rs.getString("id_admin"));
                 user.setEmail(rs.getString("email"));
                 user.setPassword(rs.getString("password"));
             }

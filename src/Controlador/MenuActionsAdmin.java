@@ -10,7 +10,7 @@ public class MenuActionsAdmin implements ActionListener{
         }
 
         else if (e.getSource() == WelcomeAdmin.iAddRoomToInventory){
-            WelcomeAdmin.showAddRoomToInventory();
+            AddRoom.showAddRoom();
         }
 
         else if (e.getSource() == WelcomeAdmin.iEditRoomInInventory){
