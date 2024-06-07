@@ -9,6 +9,10 @@ public class Alerts extends JOptionPane{
         showMessageDialog(frame, "The password can't be empty", null, ERROR_MESSAGE);
     }
 
+    public static void emptyIdField(JFrame frame){
+        showMessageDialog(frame, "The ID number can't be empty", null, ERROR_MESSAGE);
+    }
+
     public static void errorLogin(JFrame frame){
         showMessageDialog(frame, "User or password incorrect", null, ERROR_MESSAGE);
     }

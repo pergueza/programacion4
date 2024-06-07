@@ -1,26 +1,22 @@
-import java.util.ArrayList;
-import java.util.List;
-
 public class User {
-    String identificationType;
-    String identificationNumber;
-    String names;
-    String surnames;
-    String adress;
-    String cityResidence;
-    String cellphoneNumber;
-    String confirmPassword;
+    private String identificationType;
+    private String identificationNumber;
+    private String names;
+    private String surnames;
+    private String adress;
+    private String cityResidence;
+    private String cellphoneNumber;
     private String email;
     private String password;
-    static boolean isCustomer;
+    private String isCustomer;
 
-    public static List<User> users = new ArrayList<>();
-
+    public User(){
+    }
 
     public User(String identificationType, String identificationNumber,
                 String names, String surnames, String email, String adress,
                 String cityResidence, String cellphoneNumber, String password,
-                String confirmPassword){
+                String confirmPassword, String isCustomer){
         
         this.identificationType = identificationType;
         this.identificationNumber = identificationNumber;
@@ -31,46 +27,104 @@ public class User {
         this.cityResidence = cityResidence;
         this.cellphoneNumber = cellphoneNumber;
         this.password = password;
-        this.confirmPassword = confirmPassword;
+        this.isCustomer = isCustomer;
     }
 
 
-    public static boolean login(String email, String password) {
-        for (User user : User.users) {
-            if (email.equals(user.getEmail()) &&
-                password.equals(user.getPassword())) {
-                    if (user instanceof Customer){
-                        isCustomer = true;
-                    }
-                    else{
-                        isCustomer = false;
-                    }
-                    return true;
-            }
-        }
-        return false;
-    }
-
-    public static boolean isAlreadyExist(String email){
-        for (User user : User.users) {
-            if (email.equals(user.getEmail())){
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public String getEmail(){
-        return this.email;
+    public String getIdentificationType() {
+        return identificationType;
     }
 
 
-    public String getPassword(){
-        return this.password;
+    public void setIdentificationType(String identificationType) {
+        this.identificationType = identificationType;
     }
 
 
-    public void register(){
-        users.add(this);
+    public String getIdentificationNumber() {
+        return identificationNumber;
+    }
+
+
+    public void setIdentificationNumber(String identificationNumber) {
+        this.identificationNumber = identificationNumber;
+    }
+
+
+    public String getNames() {
+        return names;
+    }
+
+
+    public void setNames(String names) {
+        this.names = names;
+    }
+
+
+    public String getSurnames() {
+        return surnames;
+    }
+
+
+    public void setSurnames(String surnames) {
+        this.surnames = surnames;
+    }
+
+
+    public String getAdress() {
+        return adress;
+    }
+
+
+    public void setAdress(String adress) {
+        this.adress = adress;
+    }
+
+
+    public String getCityResidence() {
+        return cityResidence;
+    }
+
+
+    public void setCityResidence(String cityResidence) {
+        this.cityResidence = cityResidence;
+    }
+
+
+    public String getCellphoneNumber() {
+        return cellphoneNumber;
+    }
+
+
+    public void setCellphoneNumber(String cellphoneNumber) {
+        this.cellphoneNumber = cellphoneNumber;
+    }
+
+
+    public String getEmail() {
+        return email;
+    }
+
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+
+    public String getPassword() {
+        return password;
+    }
+
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getIsCustomer() {
+        return isCustomer;
+    }
+
+    public void setIsCustomer(String isCustomer) {
+        this.isCustomer = isCustomer;
     }
 }
