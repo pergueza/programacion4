@@ -77,9 +77,14 @@ public class ButtonActions implements ActionListener{
 
 
     private void buttonRegister(){
-        if (userDAO.isAlreadyExist(Register.tfIdentificationNumber.toString())) {
-            Alerts.alreadyExist(Register.fRegister);
+        if (userDAO.userIdIsAlreadyExist(Register.tfIdentificationNumber.getText())) {
+            Alerts.idAlreadyExist(Register.fRegister);
         }
+
+        else if (userDAO.userEmailIsAlreadyExist(Register.tfEmail.getText())) {
+            Alerts.emailAlreadyExist(Register.fRegister);
+        }
+        
         else{
             user.setIdentificationType(Register.tfIdentificationType.getText());
             user.setIdentificationNumber(Register.tfIdentificationNumber.getText());

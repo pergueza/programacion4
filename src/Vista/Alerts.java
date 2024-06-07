@@ -22,11 +22,15 @@ public class Alerts extends JOptionPane{
         INFORMATION_MESSAGE);
     }
 
-    public static void alreadyExist(JFrame frame){
-        showMessageDialog(frame, "This user is already exist", null, ERROR_MESSAGE);
+    public static void idAlreadyExist(JFrame frame){
+        showMessageDialog(frame, "The ID number is already in use", null, ERROR_MESSAGE);
     }
 
     public static void notMatchPasswords(JFrame frame){
         showMessageDialog(frame, "The passwords do not match", null, ERROR_MESSAGE);
+    }
+
+    public static void emailAlreadyExist(JFrame frame){
+        showMessageDialog(frame, "This email is already in use", null, ERROR_MESSAGE);
     }
 }

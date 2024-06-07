@@ -29,6 +29,12 @@ public class UserDAO {
             }
         } catch (SQLException e) {
             System.out.println(e.toString());
+        }finally{
+            try {
+                con.close();
+            } catch (SQLException e) {
+                System.out.println(e.toString());
+            }
         }
         return user;
     }
@@ -67,7 +73,7 @@ public class UserDAO {
         }
     }
 
-    public boolean isAlreadyExist(String idNumber){
+    public boolean userIdIsAlreadyExist(String idNumber){
         String sql = "SELECT * FROM user WHERE idNumber = ?;";
         try {
             con = cn.getConnection();
@@ -81,6 +87,36 @@ public class UserDAO {
             }
         } catch (SQLException e) {
             System.out.println(e.toString());
+        }finally{
+            try {
+                con.close();
+            } catch (SQLException e) {
+                System.out.println(e.toString());
+            }
+        }
+        return false;
+    }
+
+    public boolean userEmailIsAlreadyExist(String email){
+        String sql = "SELECT * FROM user WHERE email = ?;";
+        try {
+            con = cn.getConnection();
+            ps = con.prepareStatement(sql);
+            ps.setString(1, email);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (SQLException e) {
+            System.out.println(e.toString());
+        }finally{
+            try {
+                con.close();
+            } catch (SQLException e) {
+                System.out.println(e.toString());
+            }
         }
         return false;
     }
