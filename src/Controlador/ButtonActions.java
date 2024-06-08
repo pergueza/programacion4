@@ -5,6 +5,7 @@ public class ButtonActions implements ActionListener{
     static User user = new User();
     UserDAO userDAO = new UserDAO();
     AdminDAO adminDAO = new AdminDAO();
+    Room room = new Room();
     
     @Override
     public void actionPerformed(ActionEvent e){
@@ -16,25 +17,42 @@ public class ButtonActions implements ActionListener{
         else if (e.getSource() == MainMenu.bRegisterCustomer){
             Register.showRegister();
         }
-
-        else if (e.getSource() == MainMenu.bExit){
-            System.exit(0);
-        }
-
+        
         else if (e.getSource() == Register.bRegister){
             buttonRegister();
-        }
-
-        else if (e.getSource() == Register.bBack){
-            Register.closerRegister();
         }
 
         else if (e.getSource() == AddRoom.bAddRoom){
             buttonAddRoom();
         }
 
+        else if (e.getSource() == EditRoom.bEditRoom){
+            buttonEditRoom();
+        }
+
+        else if (e.getSource() == RemoveRoom.bRemoveRoom){
+            buttonRemoveRoom();
+        }
+
+        else if (e.getSource() == MainMenu.bExit){
+            System.exit(0);
+        }
+
+
+        else if (e.getSource() == Register.bBack){
+            Register.closerRegister();
+        }
+
         else if (e.getSource() == AddRoom.bBack){
             AddRoom.closeAddRoom();
+        }
+
+        else if (e.getSource() == RemoveRoom.bBack){
+            RemoveRoom.closeRemoveRoom();
+        }
+
+        else if (e.getSource() == EditRoom.bBack){
+            EditRoom.closeEditRoom();
         }
     }
 
@@ -53,9 +71,11 @@ public class ButtonActions implements ActionListener{
             user = userDAO.logInUser(email, password);
             if (user.getEmail()!=null || user.getPassword()!=null) {
                 if (user.getId_customer()!=null) {
+                    MainMenu.closeMainMenu();
                     WelcomeCustomer.showWelcome();
                 }
                 else{
+                    MainMenu.closeMainMenu();
                     WelcomeAdmin.showWelcome();
                 }
             }
@@ -116,8 +136,8 @@ public class ButtonActions implements ActionListener{
     }
 
     private void buttonAddRoom(){
-        if (AddRoom.tfName.getText().equals("") || AddRoom.tfCapacity.getText().equals("") ||
-            AddRoom.tfPriceNight.getText().equals("") || AddRoom.bg.getSelection() == null){
+        if (AddRoom.tfNumber.getText().equals("") || AddRoom.tfCapacity.getText().equals("") ||
+            AddRoom.tfPriceNight.getText().equals("")){
                 Alerts.emptyField(AddRoom.fAddRoom);
             }
         else{
@@ -128,21 +148,45 @@ public class ButtonActions implements ActionListener{
     private void addRoom(){
         Room room = new Room();
         
-        if (adminDAO.roomIsAlreadyExist(AddRoom.tfName.getText())){
+        if (adminDAO.roomIsAlreadyExist(AddRoom.tfNumber.getText())){
             Alerts.roomAlreadyExist(AddRoom.fAddRoom);
         }
 
         else{
-            room.setName(AddRoom.tfName.getText());
+            room.setNumber(AddRoom.tfNumber.getText());
             room.setCapacity(AddRoom.tfCapacity.getText());
             room.setPriceNight(AddRoom.tfPriceNight.getText());
-            if (AddRoom.rbAvailiable.isSelected()){
-                room.setAvailability(true);
-            }
 
-            adminDAO.AddRoomToInventory(user.getId_admin(), room);
-            AddRoom.closeAddRoom();
+            adminDAO.addRoomToInventory(user.getId_admin(), room);
             Alerts.addRoomSuccess(AddRoom.fAddRoom);
+            AddRoom.closeAddRoom();
+        }
+    }
+
+    private void buttonRemoveRoom(){
+        if (!adminDAO.roomIsAlreadyExist(RemoveRoom.tfNumber.getText())) {
+            Alerts.roomNotExist(RemoveRoom.fRemoveRoom);
+        }
+
+        else{
+            adminDAO.removeRoomToInventory(RemoveRoom.tfNumber.getText());
+            Alerts.removeRoomSuccess(RemoveRoom.fRemoveRoom);
+            RemoveRoom.closeRemoveRoom();
+        }
+    }
+
+    private void buttonEditRoom(){
+        if (!adminDAO.roomIsAlreadyExist(EditRoom.tfNumber.getText())) {
+            Alerts.roomNotExist(EditRoom.fEditRoom);
+        }
+
+        else{
+            room.setNumber(EditRoom.tfNumber.getText());
+            room.setCapacity(EditRoom.tfCapacity.getText());
+            room.setPriceNight(EditRoom.tfPriceNight.getText());
+            adminDAO.editRoom(room);
+            Alerts.editRoomSuccess(EditRoom.fEditRoom);
+            EditRoom.closeEditRoom();
         }
     }
 }

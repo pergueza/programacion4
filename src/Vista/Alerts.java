@@ -39,11 +39,25 @@ public class Alerts extends JOptionPane{
     }
 
     public static void roomAlreadyExist(JFrame frame){
-        showMessageDialog(frame, "This room is already in use", null, ERROR_MESSAGE);
+        showMessageDialog(frame, "This room is already exist", null, ERROR_MESSAGE);
+    }
+
+    public static void roomNotExist(JFrame frame){
+        showMessageDialog(frame, "This room not exist", null, ERROR_MESSAGE);
     }
 
     public static void addRoomSuccess(JFrame frame){
         showMessageDialog(frame, "Add Room Correctly", null,
+        INFORMATION_MESSAGE);
+    }
+
+    public static void editRoomSuccess(JFrame frame){
+        showMessageDialog(frame, "Edit Room Correctly", null,
+        INFORMATION_MESSAGE);
+    }
+
+    public static void removeRoomSuccess(JFrame frame){
+        showMessageDialog(frame, "Remove Room Correctly", null,
         INFORMATION_MESSAGE);
     }
 }

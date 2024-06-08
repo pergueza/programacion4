@@ -3,20 +3,20 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
-public class AddRoom {
-    private static AddRoom instance;
+public class EditRoom {
+    private static EditRoom instance;
     static ButtonActions buttonActions = new ButtonActions();
 
-    static JFrame fAddRoom = new JFrame("Add Room - MyHotel");
+    static JFrame fEditRoom = new JFrame("Edit Room - MyHotel");
     
     static JButton bBack = new JButton("Back"),
-    bAddRoom = new JButton("Add room");
+    bEditRoom = new JButton("Edit room");
     
     static JTextField tfNumber = new JTextField(),
     tfCapacity = new JTextField(),
     tfPriceNight = new JTextField();
     
-    private AddRoom(){
+    private EditRoom(){
         JLabel lNumber = new JLabel("Room Number");
         JLabel lCapacity = new JLabel("Capacity");
         JLabel lPriceNight = new JLabel("Price Night");
@@ -28,40 +28,40 @@ public class AddRoom {
         lPriceNight.setBounds(50, 100, 190, 30);
         tfPriceNight.setBounds(50, 130, 190, 30);
         
-        bAddRoom.setBounds(50, 170, 190, 30);
+        bEditRoom.setBounds(50, 170, 190, 30);
         bBack.setBounds(260, 170, 190, 30);
 
-        bAddRoom.addActionListener(buttonActions);
+        bEditRoom.addActionListener(buttonActions);
         bBack.addActionListener(buttonActions);
 
-        fAddRoom.add(lNumber); fAddRoom.add(tfNumber);
-        fAddRoom.add(lCapacity); fAddRoom.add(tfCapacity);
-        fAddRoom.add(lPriceNight); fAddRoom.add(tfPriceNight);
+        fEditRoom.add(lNumber); fEditRoom.add(tfNumber);
+        fEditRoom.add(lCapacity); fEditRoom.add(tfCapacity);
+        fEditRoom.add(lPriceNight); fEditRoom.add(tfPriceNight);
 
-        fAddRoom.add(bAddRoom); fAddRoom.add(bBack);
-        fAddRoom.setSize(500, 280);
-        fAddRoom.setLayout(null);
-        fAddRoom.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        fEditRoom.add(bEditRoom); fEditRoom.add(bBack);
+        fEditRoom.setSize(500, 280);
+        fEditRoom.setLayout(null);
+        fEditRoom.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
 
-    private static AddRoom getInstance(){
+    private static EditRoom getInstance(){
         if (instance == null){
-            return instance = new AddRoom();
+            return instance = new EditRoom();
         }
         return instance;
     }
 
-    public static void showAddRoom(){
+    public static void showEditRoom(){
         getInstance();
 
-        fAddRoom.setVisible(true);
+        fEditRoom.setVisible(true);
     }
 
-    public static void closeAddRoom(){
+    public static void closeEditRoom(){
         tfNumber.setText(null);
         tfCapacity.setText(null);
         tfPriceNight.setText(null);
 
-        fAddRoom.dispose();
+        fEditRoom.dispose();
     }
 }

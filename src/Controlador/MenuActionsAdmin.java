@@ -5,7 +5,7 @@ public class MenuActionsAdmin implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e){
         
-        if (e.getSource() == WelcomeAdmin.iCheckAvailabilityRoom){
+        if (e.getSource() == WelcomeAdmin.iCheckRooms){
             WelcomeAdmin.showCheckAvailabilityRoom();
         }
 
@@ -14,11 +14,11 @@ public class MenuActionsAdmin implements ActionListener{
         }
 
         else if (e.getSource() == WelcomeAdmin.iEditRoomInInventory){
-            WelcomeAdmin.showEditRoomInInventory();
+            EditRoom.showEditRoom();
         }
 
         else if (e.getSource() == WelcomeAdmin.iRemoveRoomFromInventory){
-            WelcomeAdmin.showRemoveRoomFromInventory();
+            RemoveRoom.showRemoveRoom();
         }
 
         else if (e.getSource() == WelcomeAdmin.iSignOff){

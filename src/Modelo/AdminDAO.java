@@ -9,22 +9,19 @@ public class AdminDAO {
     PreparedStatement ps;
     ResultSet rs;
 
-    public boolean AddRoomToInventory(String id_admin, Room room){
-        String sql = "INSERT INTO room(id_admin, name, capacity, priceNight, availability)\n" + //
-                     "VALUES (?, ?, ?, ?, ?)";
+    public void addRoomToInventory(String id_admin, Room room){
+        String sql = "INSERT INTO room(id_admin, number, capacity, priceNight)\n" + //
+                     "VALUES (?, ?, ?, ?)";
         try {
             con = cn.getConnection();
             ps = con.prepareStatement(sql);
             ps.setString(1, id_admin);
-            ps.setString(2, room.getName());
+            ps.setString(2, room.getNumber());
             ps.setString(3, room.getCapacity());
             ps.setString(4, room.getPriceNight());
-            ps.setBoolean(5, room.getAvailability());
             ps.execute();
-            return true;
         } catch (SQLException e) {
             System.out.println(e.toString());
-            return false;
         }finally{
             try {
                 con.close();
@@ -34,12 +31,12 @@ public class AdminDAO {
         }
     }
 
-    public boolean roomIsAlreadyExist(String name){
-        String sql = "SELECT * FROM room WHERE name = ?;";
+    public boolean roomIsAlreadyExist(String number){
+        String sql = "SELECT * FROM room WHERE number = ?;";
         try {
             con = cn.getConnection();
             ps = con.prepareStatement(sql);
-            ps.setString(1, name);
+            ps.setString(1, number);
             rs = ps.executeQuery();
             if (rs.next()) {
                 return true;
@@ -56,5 +53,43 @@ public class AdminDAO {
             }
         }
         return false;
+    }
+
+    public void removeRoomToInventory(String number){
+        String sql = "DELETE FROM room WHERE number = ?;";
+        try {
+            con = cn.getConnection();
+            ps = con.prepareStatement(sql);
+            ps.setString(1, number);
+            ps.execute();
+        } catch (SQLException e) {
+            System.out.println(e.toString());
+        }finally{
+            try {
+                con.close();
+            } catch (SQLException e) {
+                System.out.println(e.toString());
+            }
+        }
+    }
+
+    public void editRoom(Room room){
+        String sql = "UPDATE room SET capacity = ?, priceNight = ? WHERE number = ?";
+        try {
+            con = cn.getConnection();
+            ps = con.prepareStatement(sql);
+            ps.setString(1, room.getCapacity());
+            ps.setString(2, room.getPriceNight());
+            ps.setString(3, room.getNumber());
+            ps.execute();
+        } catch (SQLException e) {
+            System.out.println(e.toString());
+        }finally{
+            try {
+                con.close();
+            } catch (SQLException e) {
+                System.out.println(e.toString());
+            }
+        }
     }
 }
