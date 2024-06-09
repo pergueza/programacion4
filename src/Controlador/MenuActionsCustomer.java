@@ -24,10 +24,6 @@ public class MenuActionsCustomer implements ActionListener{
             WelcomeCustomer.showSearchAvalaibleRooms();
         }
 
-        else if (e.getSource() == WelcomeCustomer.iDetailsRooms){
-            WelcomeCustomer.showDetailRooms();
-        }
-
         else if (e.getSource() == WelcomeCustomer.iSignOff){
             WelcomeCustomer.frameWelcome.dispose();
             MainMenu.showMainMenu();

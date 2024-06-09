@@ -31,30 +31,6 @@ public class AdminDAO {
         }
     }
 
-    public boolean roomIsAlreadyExist(String number){
-        String sql = "SELECT * FROM room WHERE number = ?;";
-        try {
-            con = cn.getConnection();
-            ps = con.prepareStatement(sql);
-            ps.setString(1, number);
-            rs = ps.executeQuery();
-            if (rs.next()) {
-                return true;
-            } else {
-                return false;
-            }
-        } catch (SQLException e) {
-            System.out.println(e.toString());
-        }finally{
-            try {
-                con.close();
-            } catch (SQLException e) {
-                System.out.println(e.toString());
-            }
-        }
-        return false;
-    }
-
     public void removeRoomToInventory(String number){
         String sql = "DELETE FROM room WHERE number = ?;";
         try {

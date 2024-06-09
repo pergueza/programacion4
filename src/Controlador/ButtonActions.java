@@ -6,10 +6,10 @@ public class ButtonActions implements ActionListener{
     UserDAO userDAO = new UserDAO();
     AdminDAO adminDAO = new AdminDAO();
     Room room = new Room();
+    RoomDAO roomDAO = new RoomDAO();
     
     @Override
     public void actionPerformed(ActionEvent e){
-
         if(e.getSource() == MainMenu.bLogIn){
             buttonLogin();
         }
@@ -148,7 +148,7 @@ public class ButtonActions implements ActionListener{
     private void addRoom(){
         Room room = new Room();
         
-        if (adminDAO.roomIsAlreadyExist(AddRoom.tfNumber.getText())){
+        if (roomDAO.roomIsAlreadyExist(AddRoom.tfNumber.getText())){
             Alerts.roomAlreadyExist(AddRoom.fAddRoom);
         }
 
@@ -164,7 +164,7 @@ public class ButtonActions implements ActionListener{
     }
 
     private void buttonRemoveRoom(){
-        if (!adminDAO.roomIsAlreadyExist(RemoveRoom.tfNumber.getText())) {
+        if (!roomDAO.roomIsAlreadyExist(RemoveRoom.tfNumber.getText())) {
             Alerts.roomNotExist(RemoveRoom.fRemoveRoom);
         }
 
@@ -176,7 +176,7 @@ public class ButtonActions implements ActionListener{
     }
 
     private void buttonEditRoom(){
-        if (!adminDAO.roomIsAlreadyExist(EditRoom.tfNumber.getText())) {
+        if (!roomDAO.roomIsAlreadyExist(EditRoom.tfNumber.getText())) {
             Alerts.roomNotExist(EditRoom.fEditRoom);
         }
 

@@ -9,7 +9,6 @@ public class WelcomeCustomer {
                 iHistoryReservation = new JMenuItem("View Reservation History..."),
 
                 iSearchAvailableRooms = new JMenuItem("Search Available Rooms..."),
-                iDetailsRooms = new JMenuItem("See Room Details..."),
 
                 iSignOff = new JMenuItem("Sign Off...");
     
@@ -30,7 +29,6 @@ public class WelcomeCustomer {
         menuReservations.add(iHistoryReservation);
 
         menuRooms.add(iSearchAvailableRooms);
-        menuRooms.add(iDetailsRooms);
 
         menuBar.add(menuReservations);
         menuBar.add(menuRooms);
@@ -43,7 +41,6 @@ public class WelcomeCustomer {
         iHistoryReservation.addActionListener(menuActions);
 
         iSearchAvailableRooms.addActionListener(menuActions);
-        iDetailsRooms.addActionListener(menuActions);
 
         frameWelcome.setJMenuBar(menuBar);
         createDefaultFrame(frameWelcome);

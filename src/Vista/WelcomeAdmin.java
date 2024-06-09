@@ -47,10 +47,4 @@ public class WelcomeAdmin {
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frameWelcome.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
-
-
-    public static void showCheckAvailabilityRoom(){
-        frameDefault.setTitle("Check Availability Rooms - MyHotel");
-        createDefaultFrame(frameDefault);
-    }
 }
