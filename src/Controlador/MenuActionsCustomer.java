@@ -4,11 +4,8 @@ import java.awt.event.ActionEvent;
 public class MenuActionsCustomer implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e){
-        if(e.getSource() == WelcomeCustomer.iMakeReservation){
-            WelcomeCustomer.showMakeReservation();
-        }
 
-        else if (e.getSource() == WelcomeCustomer.iModifyReservation){
+        if (e.getSource() == WelcomeCustomer.iModifyReservation){
             WelcomeCustomer.showModifyReservation();
         }
 
@@ -21,7 +18,7 @@ public class MenuActionsCustomer implements ActionListener{
         }
 
         else if (e.getSource() == WelcomeCustomer.iSearchAvailableRooms){
-            WelcomeCustomer.showSearchAvalaibleRooms();
+            SearchRoom.showSearchRoom();
         }
 
         else if (e.getSource() == WelcomeCustomer.iSignOff){

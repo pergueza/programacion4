@@ -1,8 +1,6 @@
 import java.awt.event.ActionListener;
 import java.util.List;
-
 import javax.swing.table.DefaultTableModel;
-
 import java.awt.event.ActionEvent;
 
 public class MenuActionsAdmin implements ActionListener{
@@ -10,7 +8,8 @@ public class MenuActionsAdmin implements ActionListener{
     public void actionPerformed(ActionEvent e){
         
         if (e.getSource() == WelcomeAdmin.iCheckRooms){
-            CheckRooms.emptyTable();
+            RoomDAO.setModel((DefaultTableModel) CheckRooms.tCheckRooms.getModel());
+            RoomDAO.emptyTable();
             checkRooms();
             CheckRooms.showCheckRooms();
         }
@@ -35,20 +34,19 @@ public class MenuActionsAdmin implements ActionListener{
 
     private void checkRooms(){
         RoomDAO roomDAO = new RoomDAO();
-        CheckRooms.model = (DefaultTableModel) CheckRooms.jt.getModel();
         List<Room> listRoom = roomDAO.roomList();
         Object[] obj = new Object[3];
-        if (CheckRooms.model.getColumnCount() == 0){
-            CheckRooms.model.addColumn("NUMBER");
-            CheckRooms.model.addColumn("CAPACITY");
-            CheckRooms.model.addColumn("PRICE NIGHT");
+        if (roomDAO.getModel().getColumnCount() == 0){
+            roomDAO.getModel().addColumn("NUMBER");
+            roomDAO.getModel().addColumn("CAPACITY");
+            roomDAO.getModel().addColumn("PRICE NIGHT");
         }
         for (int i = 0; i < listRoom.size(); i++) {
             obj[0] = listRoom.get(i).getNumber();
             obj[1] = listRoom.get(i).getCapacity();
             obj[2] = listRoom.get(i).getPriceNight();
-            CheckRooms.model.addRow(obj);
+            roomDAO.getModel().addRow(obj);
         }
-        CheckRooms.jt.setModel(CheckRooms.model);
+        CheckRooms.tCheckRooms.setModel(roomDAO.getModel());
     }
 }   

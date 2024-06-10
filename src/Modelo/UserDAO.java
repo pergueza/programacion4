@@ -4,10 +4,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class UserDAO {
-    Connect cn = new Connect();
-    Connection con;
-    PreparedStatement ps;
-    ResultSet rs;
+    private Connect cn = new Connect();
+    private Connection con;
+    private PreparedStatement ps;
+    private ResultSet rs;
 
     public User logInUser(String email, String passwrod){
         User user = new User();

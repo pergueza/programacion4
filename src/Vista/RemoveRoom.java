@@ -5,7 +5,7 @@ import javax.swing.JTextField;
 
 public class RemoveRoom {
     private static RemoveRoom instance;
-    static ButtonActions buttonActions = new ButtonActions();
+    private static ButtonActions buttonActions = new ButtonActions();
 
     static JFrame fRemoveRoom = new JFrame("Remove Room - MyHotel");
     

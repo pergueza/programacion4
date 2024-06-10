@@ -2,7 +2,7 @@ import javax.swing.*;
 
 public class Register {
     private static Register instance;
-    static ButtonActions buttonActions = new ButtonActions();
+    private static ButtonActions buttonActions = new ButtonActions();
 
     static JFrame fRegister = new JFrame("Register - MyHotel");
     

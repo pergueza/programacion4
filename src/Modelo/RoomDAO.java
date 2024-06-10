@@ -1,4 +1,5 @@
 import java.util.List;
+import javax.swing.table.DefaultTableModel;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -6,10 +7,11 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class RoomDAO {
-    Connect cn = new Connect();
-    Connection con;
-    PreparedStatement ps;
-    ResultSet rs;
+    private Connect cn = new Connect();
+    private Connection con;
+    private PreparedStatement ps;
+    private ResultSet rs;
+    private static DefaultTableModel model;
 
     public Room getRoom(String roomNumber){
         Room room = new Room();
@@ -63,7 +65,7 @@ public class RoomDAO {
 
     public List<Room> roomList(){
         List<Room> listRoom = new ArrayList<>();
-        String sql = "SELECT * FROM room;";
+        String sql = "SELECT * FROM room order by number;";
         try {
             con = cn.getConnection();
             ps = con.prepareStatement(sql);;
@@ -87,5 +89,19 @@ public class RoomDAO {
             }
         }
         return listRoom;
+    }
+
+    public static void emptyTable(){
+        for (int i = 0; i < model.getRowCount();) {
+            model.removeRow(i);
+        }
+    }
+
+    public DefaultTableModel getModel() {
+        return model;
+    }
+
+    public static void setModel(DefaultTableModel model) {
+        RoomDAO.model = model;
     }
 }

@@ -1,97 +1,109 @@
 import java.awt.event.ActionListener;
+import java.util.List;
+
+import javax.swing.table.DefaultTableModel;
+
 import java.awt.event.ActionEvent;
 
-public class ButtonActions implements ActionListener{
+public class ButtonActions implements ActionListener {
     static User user = new User();
     UserDAO userDAO = new UserDAO();
     AdminDAO adminDAO = new AdminDAO();
     Room room = new Room();
     RoomDAO roomDAO = new RoomDAO();
-    
+
     @Override
-    public void actionPerformed(ActionEvent e){
-        if(e.getSource() == MainMenu.bLogIn){
+    public void actionPerformed(ActionEvent e) {
+        if (e.getSource() == MainMenu.bLogIn) {
             buttonLogin();
         }
 
-        else if (e.getSource() == MainMenu.bRegisterCustomer){
+        else if (e.getSource() == MainMenu.bRegisterCustomer) {
             Register.showRegister();
         }
-        
-        else if (e.getSource() == Register.bRegister){
+
+        else if (e.getSource() == Register.bRegister) {
             buttonRegister();
         }
 
-        else if (e.getSource() == AddRoom.bAddRoom){
+        else if (e.getSource() == AddRoom.bAddRoom) {
             buttonAddRoom();
         }
 
-        else if (e.getSource() == EditRoom.bEditRoom){
+        else if (e.getSource() == EditRoom.bEditRoom) {
             buttonEditRoom();
         }
 
-        else if (e.getSource() == RemoveRoom.bRemoveRoom){
+        else if (e.getSource() == RemoveRoom.bRemoveRoom) {
             buttonRemoveRoom();
         }
 
-        else if (e.getSource() == MainMenu.bExit){
+        else if (e.getSource() == SearchRoom.bSearchRoom) {
+            buttonSearchRoom();
+        }
+
+        else if (e.getSource() == MainMenu.bExit) {
             System.exit(0);
         }
 
-
-        else if (e.getSource() == Register.bBack){
+        else if (e.getSource() == Register.bBack) {
             Register.closerRegister();
         }
 
-        else if (e.getSource() == AddRoom.bBack){
+        else if (e.getSource() == AddRoom.bBack) {
             AddRoom.closeAddRoom();
         }
 
-        else if (e.getSource() == RemoveRoom.bBack){
+        else if (e.getSource() == RemoveRoom.bBack) {
             RemoveRoom.closeRemoveRoom();
         }
 
-        else if (e.getSource() == EditRoom.bBack){
+        else if (e.getSource() == EditRoom.bBack) {
             EditRoom.closeEditRoom();
+        }
+
+        else if (e.getSource() == SearchRoom.bBack) {
+            SearchRoom.closeSearchRoom();
+        }
+
+        else if (e.getSource() == MakeReservation.bBack) {
+            MakeReservation.closeMakeReservation();
         }
     }
 
-    private void buttonLogin(){
+    private void buttonLogin() {
         String email = MainMenu.tfEmail.getText();
         String password = String.valueOf(MainMenu.pfPassword.getPassword());
-        if ("".equals(email)){
+        if ("".equals(email)) {
             Alerts.emptyEmailField(MainMenu.fLogin);
         }
-        
-        else if("".equals(password)){
+
+        else if ("".equals(password)) {
             Alerts.emptyPasswordField(MainMenu.fLogin);
         }
 
-        else{
+        else {
             user = userDAO.logInUser(email, password);
-            if (user.getEmail()!=null || user.getPassword()!=null) {
-                if (user.getId_customer()!=null) {
+            if (user.getEmail() != null || user.getPassword() != null) {
+                if (user.getId_customer() != null) {
                     MainMenu.closeMainMenu();
                     WelcomeCustomer.showWelcome();
-                }
-                else{
+                } else {
                     MainMenu.closeMainMenu();
                     WelcomeAdmin.showWelcome();
                 }
-            }
-            else{
+            } else {
                 Alerts.errorLogin(MainMenu.fLogin);
             }
         }
     }
 
-
-    private void buttonRegister(){
-        if (Register.tfIdentificationNumber.getText().equals("")){
+    private void buttonRegister() {
+        if (Register.tfIdentificationNumber.getText().equals("")) {
             Alerts.emptyIdField(Register.fRegister);
         }
 
-        else if (Register.tfEmail.getText().equals("")){
+        else if (Register.tfEmail.getText().equals("")) {
             Alerts.emptyEmailField(Register.fRegister);
         }
 
@@ -100,16 +112,16 @@ public class ButtonActions implements ActionListener{
         }
 
         else if (!String.valueOf(Register.pfPassword.getPassword())
-            .equals(String.valueOf(Register.pfConfirmPassword.getPassword()))){
-                Alerts.notMatchPasswords(null);
-            }
+                .equals(String.valueOf(Register.pfConfirmPassword.getPassword()))) {
+            Alerts.notMatchPasswords(null);
+        }
 
-        else{
+        else {
             register();
         }
     }
-    
-    private void register(){
+
+    private void register() {
         if (userDAO.userIdIsAlreadyExist(Register.tfIdentificationNumber.getText())) {
             Alerts.idAlreadyExist(Register.fRegister);
         }
@@ -117,8 +129,8 @@ public class ButtonActions implements ActionListener{
         else if (userDAO.userEmailIsAlreadyExist(Register.tfEmail.getText())) {
             Alerts.emailAlreadyExist(Register.fRegister);
         }
-        
-        else{
+
+        else {
             user.setIdentificationType(Register.tfIdentificationType.getText());
             user.setIdentificationNumber(Register.tfIdentificationNumber.getText());
             user.setNames(Register.tfNames.getText());
@@ -135,24 +147,23 @@ public class ButtonActions implements ActionListener{
         }
     }
 
-    private void buttonAddRoom(){
+    private void buttonAddRoom() {
         if (AddRoom.tfNumber.getText().equals("") || AddRoom.tfCapacity.getText().equals("") ||
-            AddRoom.tfPriceNight.getText().equals("")){
-                Alerts.emptyField(AddRoom.fAddRoom);
-            }
-        else{
+                AddRoom.tfPriceNight.getText().equals("")) {
+            Alerts.emptyField(AddRoom.fAddRoom);
+        } else {
             addRoom();
         }
     }
 
-    private void addRoom(){
+    private void addRoom() {
         Room room = new Room();
-        
-        if (roomDAO.roomIsAlreadyExist(AddRoom.tfNumber.getText())){
+
+        if (roomDAO.roomIsAlreadyExist(AddRoom.tfNumber.getText())) {
             Alerts.roomAlreadyExist(AddRoom.fAddRoom);
         }
 
-        else{
+        else {
             room.setNumber(AddRoom.tfNumber.getText());
             room.setCapacity(AddRoom.tfCapacity.getText());
             room.setPriceNight(AddRoom.tfPriceNight.getText());
@@ -163,24 +174,24 @@ public class ButtonActions implements ActionListener{
         }
     }
 
-    private void buttonRemoveRoom(){
+    private void buttonRemoveRoom() {
         if (!roomDAO.roomIsAlreadyExist(RemoveRoom.tfNumber.getText())) {
             Alerts.roomNotExist(RemoveRoom.fRemoveRoom);
         }
 
-        else{
+        else {
             adminDAO.removeRoomToInventory(RemoveRoom.tfNumber.getText());
             Alerts.removeRoomSuccess(RemoveRoom.fRemoveRoom);
             RemoveRoom.closeRemoveRoom();
         }
     }
 
-    private void buttonEditRoom(){
+    private void buttonEditRoom() {
         if (!roomDAO.roomIsAlreadyExist(EditRoom.tfNumber.getText())) {
             Alerts.roomNotExist(EditRoom.fEditRoom);
         }
 
-        else{
+        else {
             room.setNumber(EditRoom.tfNumber.getText());
             room.setCapacity(EditRoom.tfCapacity.getText());
             room.setPriceNight(EditRoom.tfPriceNight.getText());
@@ -188,5 +199,45 @@ public class ButtonActions implements ActionListener{
             Alerts.editRoomSuccess(EditRoom.fEditRoom);
             EditRoom.closeEditRoom();
         }
+    }
+
+    private void buttonSearchRoom() {
+        SearchRoom.closeSearchRoom();
+        RoomDAO.setModel((DefaultTableModel) MakeReservation.tMakeReservation.getModel());
+        RoomDAO.emptyTable();
+        searchRoom();
+        MakeReservation.showMakeReservation();
+    }
+
+    private void searchRoom() {
+        CustomerDAO customerDAO = new CustomerDAO();
+        String priceNight = SearchRoom.tfPriceNight.getText();
+        List<Room> listRoom;
+
+        if (priceNight.equals("")) {
+            listRoom = customerDAO.roomList(SearchRoom.tfCheckIn.getText(),
+                    SearchRoom.tfCheckOut.getText(), SearchRoom.tfCapacity.getText(),
+                    "9999999999");
+        } else {
+            listRoom = customerDAO.roomList(SearchRoom.tfCheckIn.getText(),
+                    SearchRoom.tfCheckOut.getText(), SearchRoom.tfCapacity.getText(),
+                    priceNight);
+        }
+
+        Object[] obj = new Object[3];
+        if (roomDAO.getModel().getColumnCount() == 0) {
+            roomDAO.getModel().addColumn("NUMBER");
+            roomDAO.getModel().addColumn("CAPACITY");
+            roomDAO.getModel().addColumn("PRICE NIGHT");
+        }
+
+        for (int i = 0; i < listRoom.size(); i++) {
+            obj[0] = listRoom.get(i).getNumber();
+            obj[1] = listRoom.get(i).getCapacity();
+            obj[2] = listRoom.get(i).getPriceNight();
+
+            roomDAO.getModel().addRow(obj);
+        }
+        MakeReservation.tMakeReservation.setModel(roomDAO.getModel());
     }
 }

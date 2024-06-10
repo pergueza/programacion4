@@ -1,13 +1,11 @@
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class AdminDAO {
-    Connect cn = new Connect();
-    Connection con;
-    PreparedStatement ps;
-    ResultSet rs;
+    private Connect cn = new Connect();
+    private Connection con;
+    private PreparedStatement ps;
 
     public void addRoomToInventory(String id_admin, Room room){
         String sql = "INSERT INTO room(id_admin, number, capacity, priceNight)\n" + //

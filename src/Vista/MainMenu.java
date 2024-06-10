@@ -2,7 +2,7 @@ import javax.swing.*;
 
 public class MainMenu {
     private static MainMenu instance;
-    public static ButtonActions buttonActions = new ButtonActions();
+    private static ButtonActions buttonActions = new ButtonActions();
 
     static JFrame fLogin = new JFrame("Login - MyHotel");
     static JTextField tfEmail = new JTextField();

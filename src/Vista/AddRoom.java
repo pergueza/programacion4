@@ -5,7 +5,7 @@ import javax.swing.JTextField;
 
 public class AddRoom {
     private static AddRoom instance;
-    static ButtonActions buttonActions = new ButtonActions();
+    private static ButtonActions buttonActions = new ButtonActions();
 
     static JFrame fAddRoom = new JFrame("Add Room - MyHotel");
     
